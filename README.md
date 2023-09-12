@@ -21,14 +21,31 @@ git clone https://github.com/facebookresearch/llama
 git clone https://github.com/ggerganov/llama.cpp
 ```
 
-2. **Build Llama.cpp:**
+2. **Get official llama2 weights from Meta**
+
+```bash
+mkdir meta_models
+place downloaded files in this directory
+```
+
+```
+llama-on-apple/
+├── llama/
+├── llama.cpp/
+└── meta_models/
+    ├── llama-2-7b/
+    └── llama-2-7b-chat/
+
+```
+
+3. **Build Llama.cpp:**
 
 ```bash
 cd llama.cpp
-make
+LLAMA_METAL=1 make
 ```
 
-3. **Create a Conda Environment and Install Dependencies:**
+4. **Create a Conda Environment and Install Dependencies:**
 
 ```bash
 conda create -n llama2 python=3.11
@@ -36,13 +53,13 @@ conda activate llama2
 python3 -m pip install -r requirements.txt
 ```
 
-4. **Convert Model from Meta Format to Llama.cpp Format:**
+5. **Convert Model from Meta Format to Llama.cpp Format:**
 
 ```bash
 python3 convert.py --outfile models/7B/ggml-model-f16.bin --outtype f16 ../../llama-on-apple/meta_models/llama-2-7b-chat
 ```
 
-5. **Quantize Model to Reduce Size:**
+6. **Quantize Model to Reduce Size:**
 
 ```bash
 ./quantize ./models/7B/ggml-model-f16.bin ./models/7B/ggml-model-q4_0.bin q4_0
@@ -50,10 +67,10 @@ python3 convert.py --outfile models/7B/ggml-model-f16.bin --outtype f16 ../../ll
 
 This step quantizes the model, reducing its size from 13GB to 3GB.
 
-6. **Chat with the Model:**
+7. **Chat with the Model:**
 
 ```bash
-./main -m ./models/7B/ggml-model-q4_0.bin -n 1024 --repeat_penalty 1.0 --color -i -r "User:" -f ./prompts/chat-with-bob.txt
+./main -m ./models/7B/ggml-model-q4_0.bin -n 1024 -ngl 1 --repeat_penalty 1.0 --color -i -r "User:" -f ./prompts/chat-with-bob.txt
 ```
 
 Steps taken from video on [Youtube](https://www.youtube.com/watch?v=TsVZJbnnaSs)
