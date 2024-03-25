@@ -5,7 +5,7 @@ This repository contains information related to understanding and running the Ll
 ## Table of Contents
 
 - [Running Llama2 on Apple Silicon](#running-llama2-on-apple-silicon)
-- [Additional Resources](#additional-resources)
+- [Llama 2 tokenizer](#llama-2-tokenizer)
 
 ---
 
@@ -77,7 +77,11 @@ Steps taken from video on [Youtube](https://www.youtube.com/watch?v=TsVZJbnnaSs)
 
 ---
 
-## Additional Resources
+## Llama 2 tokenizer
+
+**Notes on llama 2 7B tokenizer**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ENDLOQvWODP1ajQZ8Qp9n1Z-ZY5MZiKU?usp=sharing)
 
 ---
 
